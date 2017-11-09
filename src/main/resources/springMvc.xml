@@ -11,11 +11,11 @@
 
 	<context:property-placeholder location="classpath:config.properties" />
 
-	<import resource="dubbo-consumer.xml" />
+	<!--<import resource="dubbo-consumer.xml" />-->
 	
-	<mvc:resources mapping="/third_party/**" location="/third_party/"/>
+	<!--<mvc:resources mapping="/third_party/**" location="/third_party/"/>-->
 	
-	<context:component-scan base-package="com.dituhui.openapi.dbm.controller" />
+	<context:component-scan base-package="com.zzgo" />
 
 	<!-- <mvc:annotation-driven/> -->
 	

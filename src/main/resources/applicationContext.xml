@@ -38,7 +38,7 @@
 				<!-- 最小可用连接数（默认0） -->
 				<property name="prototypeCount" value="${proxool.prototypeCount}" />
 				
-				<property name="maximumActiveTime" value="${proxool.maximumActiveTime}" />
+				<!--<property name="maximumActiveTime" value="${proxool.maximumActiveTime}" />-->
 				
 			    <property name="simultaneousBuildThrottle" value="${proxool.prototypeCount}" />
 			</bean>
