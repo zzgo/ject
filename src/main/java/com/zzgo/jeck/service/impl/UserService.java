@@ -50,4 +50,8 @@ public class UserService implements IUserService {
         return userDao.findBookByUserId(userId);
     }
 
+    public List<User> findUserByNameLike(String name) {
+        return userDao.findUserByNameLike(name);
+    }
+
 }

@@ -24,4 +24,6 @@ public interface IUserService {
 
     List<Book> findBookByUserId(String userId);
 
+    List<User> findUserByNameLike(String name);
+
 }
