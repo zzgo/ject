@@ -29,7 +29,7 @@ public class Sensor {
     @Id
     @GenericGenerator(name = "uuid", strategy = "assigned")
     @GeneratedValue(generator = "uuid")
-    @Column(name = "user_id", unique = true, nullable = false)
+    @Column(name = "sensor_id", unique = true, nullable = false)
     public String getId() {
         return id;
     }
@@ -56,7 +56,7 @@ public class Sensor {
         this.name = name;
     }
 
-    @OneToOne(optional = true, cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "location_id")
     public Location getLocation() {
         return location;

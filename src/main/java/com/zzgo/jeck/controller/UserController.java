@@ -3,7 +3,8 @@ package com.zzgo.jeck.controller;
 import com.zzgo.jeck.entity.User;
 import com.zzgo.jeck.extend.PageDataExtend;
 import com.zzgo.jeck.service.IUserService;
-import com.zzgo.jeck.utils.UUIDFactroy;
+import com.zzgo.jeck.utils.DateUtil;
+import com.zzgo.jeck.utils.UUIDUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,8 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     Map<String, Object> save(User user) {
         try {
-            user.setId(UUIDFactroy.getUUID());
+            user.setId(UUIDUtil.getUUID());
+            user.setCreateTime(DateUtil.getTimestamp());
             userService.save(user);
             return ajaxResponse(null, 200, "");
         } catch (Exception e) {

@@ -14,12 +14,13 @@ public class Location {
     private String building;
     private String floor;
     private String room;
+    private String shrotName;
     private String other;
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "assigned")
     @GeneratedValue(generator = "uuid")
-    @Column(name = "user_id", unique = true, nullable = false)
+    @Column(name = "location_id", unique = true, nullable = false)
     public String getId() {
         return id;
     }
@@ -62,5 +63,14 @@ public class Location {
 
     public void setOther(String other) {
         this.other = other;
+    }
+
+    @Column(name = "location_short_name")
+    public String getShrotName() {
+        return shrotName;
+    }
+
+    public void setShrotName(String shrotName) {
+        this.shrotName = shrotName;
     }
 }

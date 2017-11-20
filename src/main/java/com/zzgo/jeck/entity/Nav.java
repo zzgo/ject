@@ -9,7 +9,7 @@ import java.util.List;
  * Created by 9527 on 2017/11/9.
  */
 @Entity
-@Table(name = "TAB_NAV")
+@Table(name = "tab_nav")
 public class Nav {
     private String id;
     private String name;
