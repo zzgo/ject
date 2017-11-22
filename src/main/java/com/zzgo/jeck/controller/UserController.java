@@ -98,12 +98,13 @@ public class UserController extends BaseController {
     }
 
     //修改
+    @ResponseBody
     @RequestMapping(value = "update")
     public Map<String, Object> update(User user0) {
         try {
             //查询实体
             User user = userService.findUserById(user0.getId());
-            //填充需要改变的属性
+            //改变的属性
             user.setPassword(Md5Util.MD5Encode(user0.getPassword()));
             user.setLoginName(user0.getLoginName());
             //更新实体

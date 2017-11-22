@@ -26,4 +26,6 @@ public interface IUserService {
 
     List<User> findUserByNameLike(String name);
 
+    User findUserByName(String name);
+
 }

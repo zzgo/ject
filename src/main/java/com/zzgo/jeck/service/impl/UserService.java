@@ -54,4 +54,8 @@ public class UserService implements IUserService {
         return userDao.findUserByNameLike(name);
     }
 
+    public User findUserByName(String name) {
+        return userDao.findUserByName(name);
+    }
+
 }

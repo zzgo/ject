@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface UserDao extends JpaRepository<User, String>, JpaSpecificationExecutor<User>, UserDaoCustom {
     List<User> findUserByNameLike(String name);
+
+    User findUserByName(String name);
 }
