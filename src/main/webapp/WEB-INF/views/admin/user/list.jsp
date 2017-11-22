@@ -7,7 +7,7 @@
 </head>
 <body>
 <table>
-    <c:forEach items="${page.results}" var="user">
+    <c:forEach items="${pd.results}" var="user">
     <tr>
         <td>${user.id}</td>
         <td>${user.name}</td>
@@ -15,11 +15,11 @@
     </tr>
     </c:forEach>
 </table>
-<c:forEach begin="${page.beginPageIndex}" end="${page.endPageIndex}" varStatus="index">
+<c:forEach begin="${pd.beginPageIndex}" end="${pd.endPageIndex}" varStatus="index">
     ${index.index},
 </c:forEach>
-<p>${page.pageNum}/${page.countPage}/</p>
-<p>共计=${page.recordPage}</p>
+<p>${pd.pageNum}/${pd.countPage}/</p>
+<p>共计=${pd.recordPage}</p>
 
 </body>
 </html>

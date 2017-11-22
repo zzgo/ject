@@ -15,6 +15,9 @@ public class Record {
     private String name;
     private String situation;
     private Date recordTime;
+    private int year;//区别年
+    private int mouth;//区分月
+    private int happendCount;
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "assigned")
@@ -53,5 +56,32 @@ public class Record {
 
     public void setRecordTime(Date recordTime) {
         this.recordTime = recordTime;
+    }
+
+    @Column(name = "record_year")
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    @Column(name = "record_mouth")
+    public int getMouth() {
+        return mouth;
+    }
+
+    public void setMouth(int mouth) {
+        this.mouth = mouth;
+    }
+
+    @Column(name = "record_happend_count")
+    public int getHappendCount() {
+        return happendCount;
+    }
+
+    public void setHappendCount(int happendCount) {
+        this.happendCount = happendCount;
     }
 }

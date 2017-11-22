@@ -25,6 +25,10 @@ public class Sensor {
     private String description;
     //创建时间
     private Date createTime;
+    //更新时间
+    private Date updateTime;
+    //提醒查看
+    private int reminding;
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "assigned")
@@ -82,5 +86,23 @@ public class Sensor {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    @Column(name = "sensor_update_time")
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    @Column(name = "sensor_reminding")
+    public int getReminding() {
+        return reminding;
+    }
+
+    public void setReminding(int reminding) {
+        this.reminding = reminding;
     }
 }
