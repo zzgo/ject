@@ -1,6 +1,7 @@
 package com.zzgo.jeck.controller;
 
 import com.zzgo.jeck.entity.User;
+import com.zzgo.jeck.utils.Md5Util;
 import com.zzgo.jeck.vo.PageDataVo;
 import com.zzgo.jeck.service.IUserService;
 import com.zzgo.jeck.utils.DateUtil;
@@ -23,6 +24,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "admin/user")
 public class UserController extends BaseController {
+    private static final String preView = "admin/user/";
     private Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
@@ -58,12 +60,10 @@ public class UserController extends BaseController {
     }
 
     //增加页面
-    @RequestMapping(value = "modify")
+    @RequestMapping(value = "add")
     public ModelAndView add() {
         ModelAndView mv = new ModelAndView();
-        //具体操作
-        mv.addObject("", "");
-        mv.setViewName("");
+        mv.setViewName(preView + "edit");
         return mv;
     }
 
@@ -74,6 +74,7 @@ public class UserController extends BaseController {
         try {
             user.setId(UUIDUtil.getUUID());
             user.setCreateTime(DateUtil.getTimestamp());
+            user.setPassword(Md5Util.MD5Encode(user.getPassword()));
             user.setLoginCount(0);
             //Map<String, Object> result = new HashMap<String, Object>();
             userService.save(user);
@@ -85,26 +86,33 @@ public class UserController extends BaseController {
     }
 
     //修改页面
-    @RequestMapping(value = "modify")
+    @RequestMapping(value = "edit")
     public ModelAndView modify(String userId) {
-        //查询实体
-        //填充需要改变的属性
-        //更新实体
         ModelAndView mv = new ModelAndView();
+        //查询实体
+        User user = userService.findUserById(userId);
         //具体操作
-        mv.addObject("", "");
-        mv.setViewName("");
+        mv.addObject("user", user);
+        mv.setViewName(preView + "edit");
         return mv;
     }
-    //修改
 
+    //修改
     @RequestMapping(value = "update")
     public Map<String, Object> update(User user0) {
-        //查询实体
-        //填充需要改变的属性
-        //更新实体
-        //删除
-        return ajaxResponse(null, 500, "");
+        try {
+            //查询实体
+            User user = userService.findUserById(user0.getId());
+            //填充需要改变的属性
+            user.setPassword(Md5Util.MD5Encode(user0.getPassword()));
+            user.setLoginName(user0.getLoginName());
+            //更新实体
+            userService.save(user);
+            return ajaxResponse(null, 200, "");
+        } catch (Exception e) {
+            logger.info("User update fail because ", e);
+            return ajaxResponse(null, 500, e.getMessage());
+        }
     }
 
 
