@@ -1,4 +1,4 @@
-package com.zzgo.jeck.vo;
+package com.zzgo.jeck.extend;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @param <T>
  * @author 张棋
- * @ClassName PageDataVo
+ * @ClassName PageDataExtend
  * @Description: 分页查询(这里用一句话描述这个类的作用)
  * @company
  * @time 2017年3月22日 下午3:07:17

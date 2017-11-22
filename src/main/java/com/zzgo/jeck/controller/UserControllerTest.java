@@ -5,7 +5,7 @@ public class UserControllerTest {
 }
 
 //import com.zzgo.jeck.entity.User;
-//import com.zzgo.jeck.vo.PageDataVo;
+//import com.zzgo.jeck.extend.PageDataExtend;
 //import com.zzgo.jeck.service.IUserService;
 //import com.zzgo.jeck.utils.DateUtil;
 //import com.zzgo.jeck.utils.UUIDUtil;
@@ -51,7 +51,7 @@ public class UserControllerTest {
 //                pageNum = userPage.getTotalPages();
 //                userPage = userService.findPage(pageNum, pageSize);
 //            }
-//            PageDataVo page = new PageDataVo(userPage.getContent(), pageNum, pageSize, (int) userPage
+//            PageDataExtend page = new PageDataExtend(userPage.getContent(), pageNum, pageSize, (int) userPage
 //                    .getTotalElements());
 //            result.put("data", page);
 //            return ajaxResponse(result, 200, "");
