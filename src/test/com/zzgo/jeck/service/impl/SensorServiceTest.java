@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.Random;
 
 /**
  * Created by 9527 on 2017/11/16.
@@ -24,17 +25,22 @@ public class SensorServiceTest {
 
     @Test
     public void save() throws Exception {
-        for (int i = 2; i < 20; i++) {
-            Location location = new Location();
-            location.setId("d98dde68-ddcf-4b2d-9998-9b5eb9bf0864");
-            Sensor sensor = new Sensor();
-            sensor.setCreateTime(DateUtil.getTimestamp());
-            sensor.setId(UUIDUtil.getUUID());
-            sensor.setDescription("");
-            sensor.setLocation(location);
-            sensor.setModel(UUIDUtil.getUUID());
-            sensor.setName("传感器" + i);
-            sensorService.save(sensor);
+        Random r = new Random();
+        for (int i = 0; i < 200; i++) {
+            //Sensor sensor = new Sensor();
+            //sensor.setCreateTime(DateUtil.getTimestamp());
+            //sensor.setId(UUIDUtil.getUUID());
+            //sensor.setDescription("");
+            //sensor.setModel(UUIDUtil.getUUID());
+            //sensor.setName("设备" + i);
+            //int i1 = r.nextInt(32) + 1;
+            //int i2 = r.nextInt(8) + 1;
+            //int i3 = r.nextInt(4) + 1;
+            //sensor.setBuilding(i1);
+            //sensor.setFloor(i2);
+            //sensor.setRoom(i3);
+            //sensor.setShortName(i1 + "-" + i2 + "-" + i3);
+            //sensorService.save(sensor);
         }
     }
 

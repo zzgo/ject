@@ -14,7 +14,6 @@ public class User {
     private String id;
     private String loginName;//登录名称
     private String password;//密码
-    private int loginCount;//登录次数
     private Date lastLoginTime;//上一次登录时间
     private String name;//姓名
     private String sex;//性别
@@ -22,6 +21,8 @@ public class User {
     private String tel;//电话
     private String note;//备注
     private Date createTime;//创建时间
+
+    private Role role;
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "assigned")
@@ -62,14 +63,6 @@ public class User {
         this.password = password;
     }
 
-    @Column(name = "user_login_count")
-    public int getLoginCount() {
-        return loginCount;
-    }
-
-    public void setLoginCount(int loginCount) {
-        this.loginCount = loginCount;
-    }
 
     @Column(name = "user_last_login_time")
     public Date getLastLoginTime() {
@@ -125,13 +118,22 @@ public class User {
         this.createTime = createTime;
     }
 
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = true)
+    @JoinColumn(name = "role_id")
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
                 ", loginName='" + loginName + '\'' +
                 ", password='" + password + '\'' +
-                ", loginCount=" + loginCount +
                 ", lastLoginTime=" + lastLoginTime +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +

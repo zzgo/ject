@@ -14,7 +14,7 @@ public class Location {
     private String building;
     private String floor;
     private String room;
-    private String shrotName;
+    private String shortName;
     private String other;
 
     @Id
@@ -66,11 +66,11 @@ public class Location {
     }
 
     @Column(name = "location_short_name")
-    public String getShrotName() {
-        return shrotName;
+    public String getShortName() {
+        return shortName;
     }
 
-    public void setShrotName(String shrotName) {
-        this.shrotName = shrotName;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 }

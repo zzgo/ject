@@ -41,6 +41,7 @@ public class SensorService implements ISensorService {
 
     public Page<Sensor> findPage(int first, int max) {
         Pageable pageable = new PageRequest(first - 1, max);
+        Page<Sensor> list = sensorDao.findAll(pageable);
         return sensorDao.findAll(pageable);
     }
 

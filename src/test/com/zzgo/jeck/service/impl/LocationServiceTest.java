@@ -27,7 +27,7 @@ public class LocationServiceTest {
         location.setFloor("2楼");
         location.setRoom("05室");
         location.setOther("");
-        location.setShrotName("1-02-05");
+        location.setShortName("1-02-05");
         locationService.save(location);
     }
 

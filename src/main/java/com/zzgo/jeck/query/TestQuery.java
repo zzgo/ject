@@ -1,5 +1,8 @@
 package com.zzgo.jeck.query;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestQuery {
 
     /**
@@ -31,31 +34,31 @@ public class TestQuery {
      * jpa 原生分页查询
      */
 
-	/*public Page<Test> query(final String tname,final String sex,final String degree,final String orgname) {  
-		return TestDao.findAll(new Specification<EduTeachers>() {  
-                 @Override  
-                 publicPredicate toPredicate(Root<EduTeachers> root, CriteriaQuery<?>query, CriteriaBuilder cb) {  
-                          //TODO Auto-generated method stub  
-                          Path<String>namepath = root.get("name");   
-                     Path<String> sexpath =root.get("sex");   
-                     Path<String> degreepath =root.get("degree");   
-                     List<Predicate> list = newArrayList<Predicate>();  
-                    if(tname!=null&&!"".equals(tname)) {  
-                              list.add(cb.like(namepath,"%"+tname+"%"));  
-                     }  
-                    if(sex!=null&&!"".equals(sex)) {  
-                              list.add(cb.like(sexpath,"%"+sex+"%"));  
-                     }  
-                    if(degree!=null&&!"".equals(degree)) {  
-                              list.add(cb.like(degreepath,"%"+degree+"%"));  
-                     }  
-                    if(orgname!=null&&!"".equals(orgname)) {  
-                              Path<String>orgnamepath=root.get("org").get("orgname");  
-                              list.add(cb.like(orgnamepath,"%"+orgname+"%"));  
-                     }  
-                     Predicate[] p = new Predicate[list.size()];  
-          return cb.and(list.toArray(p)); 
-                 }  
+	/*public Page<Test> query(final String tname,final String sex,final String degree,final String orgname) {
+		return TestDao.findAll(new Specification<EduTeachers>() {
+                 @Override
+                 publicPredicate toPredicate(Root<EduTeachers> root, CriteriaQuery<?>query, CriteriaBuilder cb) {
+                          //TODO Auto-generated method stub
+                          Path<String>namepath = root.get("name");
+                     Path<String> sexpath =root.get("sex");
+                     Path<String> degreepath =root.get("degree");
+                     List<Predicate> list = newArrayList<Predicate>();
+                    if(tname!=null&&!"".equals(tname)) {
+                              list.add(cb.like(namepath,"%"+tname+"%"));
+                     }
+                    if(sex!=null&&!"".equals(sex)) {
+                              list.add(cb.like(sexpath,"%"+sex+"%"));
+                     }
+                    if(degree!=null&&!"".equals(degree)) {
+                              list.add(cb.like(degreepath,"%"+degree+"%"));
+                     }
+                    if(orgname!=null&&!"".equals(orgname)) {
+                              Path<String>orgnamepath=root.get("org").get("orgname");
+                              list.add(cb.like(orgnamepath,"%"+orgname+"%"));
+                     }
+                     Predicate[] p = new Predicate[list.size()];
+          return cb.and(list.toArray(p));
+                 }
         },new PageRequest(0, 2, new Sort(Direction.DESC, "org.orgname")));  */
 
 

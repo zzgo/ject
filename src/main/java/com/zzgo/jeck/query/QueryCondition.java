@@ -12,94 +12,131 @@ import java.util.List;
 
 public class QueryCondition<T> implements Specification<T> {
 
-	// 查询条件容器
+    // 查询条件容器
 
-	private List<Criterion> criterions = new ArrayList<Criterion>();
-	// 倒序查询条件
-	private String orderByDESC;
-	// 升序查询条件
-	private String orderByASC;
-	// group查询条件
-	private String groupBy;
+    private List<Criterion> criterions = new ArrayList<Criterion>();
+    // 倒序查询条件
+    private String orderByDESC;
+    // 升序查询条件
+    private String orderByASC;
+    // group查询条件
+    private String groupBy;
 
-	public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-		if (!StringUtils.isEmpty(orderByASC))
-			query.orderBy(builder.asc(root.get(getOrderByASC())));
-		if (!StringUtils.isEmpty(orderByDESC))
-			query.orderBy(builder.desc(root.get(getOrderByDESC())));
-		if (!StringUtils.isEmpty(groupBy))
-			query.groupBy(root.get(getGroupBy()));
-		if (!criterions.isEmpty()) {
-			List<Predicate> predicates = new ArrayList<Predicate>();
-			for (Criterion c : criterions) {
-				predicates.add(c.toPredicate(root, query, builder));
-			}
-			// 将所有条件用 and 联合起来
-			if (predicates.size() > 0) {
-				return builder.and(predicates.toArray(new Predicate[predicates.size()]));
-			}
-		}
-		return builder.conjunction();
-	}
+    //使用and 或者是or
+    private boolean and = false;
+    private boolean or = false;
 
-	/**
-	 * 增加简单条件表达式
-	 * 
-	 * @Methods Name add
-	 * 
-	 */
-	public void add(Criterion criterion) {
-		if (criterion != null) {
-			criterions.add(criterion);
-		}
-	}
+    public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+        if (!StringUtils.isEmpty(orderByASC))
+            query.orderBy(builder.asc(root.get(getOrderByASC())));
+        if (!StringUtils.isEmpty(orderByDESC))
+            query.orderBy(builder.desc(root.get(getOrderByDESC())));
+        if (!StringUtils.isEmpty(groupBy))
+            query.groupBy(root.get(getGroupBy()));
+        if (!criterions.isEmpty()) {
+            List<Predicate> predicates = new ArrayList<Predicate>();
+            for (Criterion c : criterions) {
+                predicates.add(c.toPredicate(root, query, builder));
+            }
+            if (and) {
+                if (predicates.size() > 0) {
+                    return builder.and(predicates.toArray(new Predicate[predicates.size()]));
+                }
+            } else if (or) {
+                if (predicates.size() > 0) {
+                    return builder.or(predicates.toArray(new Predicate[predicates.size()]));
+                }
+            } else {
+                if (predicates.size() > 0) {
+                    return builder.and(predicates.toArray(new Predicate[predicates.size()]));
+                }
+            }
+        }
+        return builder.conjunction();
+    }
 
-	public void orderByDESC(String col) {
-		setOrderByDESC(col);
-	}
+    /**
+     * 增加简单条件表达式
+     *
+     * @Methods Name add
+     */
+    public void add(Criterion criterion) {
+        if (criterion != null) {
+            criterions.add(criterion);
+        }
+    }
 
-	public void orderByASC(String col) {
-		setOrderByASC(col);
-	}
+    public List<Criterion> getCriterions() {
+        return criterions;
+    }
 
-	public void groupBy(String col) {
-		setGroupBy(col);
-	}
+    public void setCriterions(List<Criterion> criterions) {
+        this.criterions = criterions;
+    }
 
-	public String getOrderByDESC() {
-		return orderByDESC;
-	}
+    public boolean isAnd() {
+        return and;
+    }
 
-	private void setOrderByDESC(String orderByDESC) {
-		this.orderByDESC = orderByDESC;
-	}
+    public void setAnd(boolean and) {
+        this.and = and;
+    }
 
-	public String getOrderByASC() {
-		return orderByASC;
-	}
+    public boolean isOr() {
+        return or;
+    }
 
-	private void setOrderByASC(String orderByASC) {
-		this.orderByASC = orderByASC;
-	}
+    public void setOr(boolean or) {
+        this.or = or;
+    }
 
-	public String getGroupBy() {
-		return groupBy;
-	}
+    public void orderByDESC(String col) {
+        setOrderByDESC(col);
+    }
 
-	private void setGroupBy(String groupBy) {
-		this.groupBy = groupBy;
-	}
-	
-	/**
-	 * 是否存在查询条件
-	 * @return
-	 */
-	public boolean exitCondition() {
-		if (criterions.size() > 0) {
-			return true;
-		}
-		return false;
-		
-	}
+    public void orderByASC(String col) {
+        setOrderByASC(col);
+    }
+
+    public void groupBy(String col) {
+        setGroupBy(col);
+    }
+
+    public String getOrderByDESC() {
+        return orderByDESC;
+    }
+
+    private void setOrderByDESC(String orderByDESC) {
+        this.orderByDESC = orderByDESC;
+    }
+
+    public String getOrderByASC() {
+        return orderByASC;
+    }
+
+    private void setOrderByASC(String orderByASC) {
+        this.orderByASC = orderByASC;
+    }
+
+    public String getGroupBy() {
+        return groupBy;
+    }
+
+    private void setGroupBy(String groupBy) {
+        this.groupBy = groupBy;
+    }
+
+    /**
+     * 是否存在查询条件
+     *
+     * @return
+     */
+    public boolean exitCondition() {
+        if (criterions.size() > 0) {
+            return true;
+        }
+        return false;
+
+    }
 
 }

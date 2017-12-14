@@ -5,6 +5,9 @@ import com.zzgo.jeck.entity.User;
 import com.zzgo.jeck.query.QueryCondition;
 import com.zzgo.jeck.query.Restrictions;
 import com.zzgo.jeck.service.IUserService;
+import com.zzgo.jeck.utils.DateUtil;
+import com.zzgo.jeck.utils.Md5Util_Old;
+import com.zzgo.jeck.utils.UUIDUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.data.domain.Page;
@@ -15,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by 9527 on 2017/11/9.
@@ -28,11 +32,20 @@ public class UserDaoTest extends
 
     @Test
     public void saveUserTest() {
+        String[] names = new String[]{"张棋", "王海生", "晏博", "赵雅娴", "李欢", "刘毅", "黄三", "廖冰雪"};
+        String[] lNames = new String[]{"Admin", "sori", "ouuui", "summary", "tom", "yaere", "hhhh", "guy"};
         User user = new User();
         for (int i = 0; i < 100; i++) {
-            user.setId("testUser" + i);
-            user.setName("userName" + i);
-            user.setPassword("pass" + i);
+            user.setId(UUIDUtil.getUUID());
+            user.setName(names[new Random().nextInt(8)]);
+            user.setPassword(Md5Util_Old.MD5Encode(i + ""));
+            user.setCreateTime(DateUtil.getTimestamp());
+            user.setLoginName(lNames[new Random().nextInt(8)]);
+            user.setSex(new Random().nextInt(2) == 0 ? "男" : "女");
+            user.setEmail(new Random().nextInt(100) * 13 + "@qq.com");
+            user.setTel(new Random().nextInt(10000000) + "0000");
+            user.setLastLoginTime(DateUtil.getTimestamp());
+            //user.setLoginCount(new Random().nextInt(100));
             userService.save(user);
         }
     }

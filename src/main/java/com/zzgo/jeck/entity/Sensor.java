@@ -15,20 +15,19 @@ import java.util.Date;
 public class Sensor {
     //id
     private String id;
-    //型号
+    //通信标识码
     private String model;
     //名称
     private String name;
     //位置
-    private Location location;
+    private String location;
     //描述
     private String description;
     //创建时间
     private Date createTime;
     //更新时间
     private Date updateTime;
-    //提醒查看
-    private int reminding;
+
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "assigned")
@@ -60,13 +59,12 @@ public class Sensor {
         this.name = name;
     }
 
-    @OneToOne
-    @JoinColumn(name = "location_id")
-    public Location getLocation() {
+    @Column(name = "sensor_location")
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
@@ -79,7 +77,7 @@ public class Sensor {
         this.description = description;
     }
 
-    @Column(name = "sensor_create_time")
+    @Column(name = "sensor_createTime")
     public Date getCreateTime() {
         return createTime;
     }
@@ -88,21 +86,12 @@ public class Sensor {
         this.createTime = createTime;
     }
 
-    @Column(name = "sensor_update_time")
+    @Column(name = "sensor_updateTime")
     public Date getUpdateTime() {
         return updateTime;
     }
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Column(name = "sensor_reminding")
-    public int getReminding() {
-        return reminding;
-    }
-
-    public void setReminding(int reminding) {
-        this.reminding = reminding;
     }
 }

@@ -43,6 +43,9 @@ public class UserService implements IUserService {
 
     public Page<User> findPage(Specification<User> specification, int first, int max) {
         Pageable pageable = new PageRequest((first - 1), max);
+        if (specification == null) {
+            return userDao.findAll(pageable);
+        }
         return userDao.findAll(specification, pageable);
     }
 
@@ -56,6 +59,10 @@ public class UserService implements IUserService {
 
     public User findUserByName(String name) {
         return userDao.findUserByName(name);
+    }
+
+    public User findUserByLoginNameAndPassword(String loginName, String password) {
+        return userDao.findUserByLoginNameAndPassword(loginName, password);
     }
 
 }

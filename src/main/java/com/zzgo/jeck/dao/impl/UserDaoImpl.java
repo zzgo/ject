@@ -22,4 +22,10 @@ public class UserDaoImpl implements UserDaoCustom {
     public List<Book> findBookByUserId(String userId) {
         return em.createQuery(" FROM Book b WHERE b.user.id = \'" + userId + "\'").getResultList();
     }
+
+    //public User findUserByLoginNameAndPassword(String loginName, String password) {
+    //    return (User) em.createQuery(" FROM User u WHERE u.loginName='" + loginName + "' and u.password='" + password+"'")
+    //            .getSingleResult();
+    //}
+
 }

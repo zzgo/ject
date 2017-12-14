@@ -28,4 +28,10 @@ public interface IUserService {
 
     User findUserByName(String name);
 
+    //登录验证
+    User findUserByLoginNameAndPassword(String loginName, String password);
+
+    //获得权限
+
+
 }

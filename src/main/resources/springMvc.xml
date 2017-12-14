@@ -28,7 +28,7 @@
         </mvc:message-converters>  
     </mvc:annotation-driven> 
 
-	<!-- <mvc:resources location="/resources/" mapping="/resources/**" /> -->
+	 <mvc:resources location="/resource/" mapping="/resource/**" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

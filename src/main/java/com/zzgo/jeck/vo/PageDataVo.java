@@ -21,6 +21,17 @@ public class PageDataVo<T> implements Serializable {
     private int endPageIndex;// 结束页码
     private int recordPage;// 总记录数
 
+    private String query;
+
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
     public PageDataVo() {
 
     }
